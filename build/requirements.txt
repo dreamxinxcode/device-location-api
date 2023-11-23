@@ -1,0 +1,5 @@
+django
+djangorestframework
+geopy
+psycopg2-binary
+requests
