@@ -3,7 +3,10 @@ import logging
 from rest_framework.views import APIView
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+
 from .models import Device
+from.serializers import DeviceSerializer
 
 LOGGER = logging.getLogger(__name__)
 
@@ -13,12 +16,10 @@ LOGGER = logging.getLogger(__name__)
 
 class DeviceView(viewsets.ViewSet):
 
-    def retrieve(self, request, pk=None):
-        """
-        Function that is called when the client wants to fetch location data
-        """
-        LOGGER.info(f"New GET request for device {pk}")
-        return Response("To be implemented!")
+    def retrieve(self, request, pk: int=None):
+        device = get_object_or_404(Device, id=pk)
+        serializer = DeviceSerializer(device)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def update(self, request, pk: int=None):
         device, _ = Device.objects.get_or_create(id=pk)
