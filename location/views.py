@@ -1,8 +1,9 @@
 import logging
 
 from rest_framework.views import APIView
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.response import Response
+from .models import Device
 
 LOGGER = logging.getLogger(__name__)
 
@@ -19,9 +20,8 @@ class DeviceView(viewsets.ViewSet):
         LOGGER.info(f"New GET request for device {pk}")
         return Response("To be implemented!")
 
-    def update(self, request, pk=None):
-        """
-        Function that handles incoming GPS data from the device in the field.
-        """
+    def update(self, request, pk: int=None):
+        device, _ = Device.objects.get_or_create(id=pk)
+        device.add_location(**request.data)
         LOGGER.info(f"New update {request} Payload: {request.data}")
-        return Response("To be implemented!")
+        return Response("Update successful!", status=status.HTTP_200_OK)
