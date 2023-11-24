@@ -3,6 +3,7 @@ import logging
 from rest_framework.views import APIView
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
 
 from .models import Device
@@ -26,3 +27,10 @@ class DeviceView(viewsets.ViewSet):
         device.add_location(**request.data)
         LOGGER.info(f"New update {request} Payload: {request.data}")
         return Response("Update successful!", status=status.HTTP_200_OK)
+    
+    @action(detail=True, methods=['GET'])
+    def last_location(self, request, pk: int=None):
+        device = get_object_or_404(Device, id=pk)
+        serializer = DeviceSerializer(device)
+        last_location = serializer.data.get('last_location')
+        return Response(last_location or "No location data available for this device.", status=status.HTTP_200_OK)
