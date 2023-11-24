@@ -22,6 +22,9 @@ shell:
 device_sim:
 	docker exec -it $(API) python scripts/device_sim.py
 
+test:
+	docker exec -it $(API) python manage.py test
+
 cleanup:
 	docker stop ${API}
 	docker stop ${DB}
