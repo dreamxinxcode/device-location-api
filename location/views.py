@@ -16,10 +16,11 @@ LOGGER = logging.getLogger(__name__)
 # Below is just some boilerplate code to help get started
 
 class DeviceView(viewsets.ViewSet):
-
+    serializer = DeviceSerializer()
+    
     def retrieve(self, request, pk: int=None):
         device = get_object_or_404(Device, id=pk)
-        serializer = DeviceSerializer(device)
+        serializer = self.serializer(device)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def update(self, request, pk: int=None):
@@ -31,6 +32,6 @@ class DeviceView(viewsets.ViewSet):
     @action(detail=True, methods=['GET'])
     def last_location(self, request, pk: int=None):
         device = get_object_or_404(Device, id=pk)
-        serializer = DeviceSerializer(device)
+        serializer = self.serializer(device)
         last_location = serializer.data.get('last_location')
         return Response(last_location or "No location data available for this device.", status=status.HTTP_200_OK)
