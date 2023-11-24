@@ -16,8 +16,13 @@ LOGGER = logging.getLogger(__name__)
 # Below is just some boilerplate code to help get started
 
 class DeviceView(viewsets.ViewSet):
-    serializer = DeviceSerializer()
+    serializer = DeviceSerializer
     
+    def list(self, request):
+        queryset = Device.objects.all()
+        serializer = self.serializer(queryset, many=True)
+        return Response(serializer.data)
+
     def retrieve(self, request, pk: int=None):
         device = get_object_or_404(Device, id=pk)
         serializer = self.serializer(device)
