@@ -86,3 +86,23 @@ This ViewSet provides various views for managing device location data.
 - URL: `/devices/{pk}/last_location/`
 - Method: `GET`
 - Response: Returns the last recorded location of the specified device.
+
+# AWS Deployment
+
+**AWS Elastic Beanstalk:**
+   - I would use AWS Elastic Beanstalk to deploy and manage a Dockerized image of the Django app.
+
+**Amazon RDS (PostgreSQL):**
+   - I would use Amazon RDS to create the PostgreSQL database.
+
+**Elastic Load Balancer (ELB):**
+   - Application Load Balancer (ALB) to distribute traffic across multiple instances of the Django app.
+
+**Auto Scaling Group:**
+   - Auto Scaling Group to adjust the number of instances based on traffic.
+
+**Amazon CloudWatch:**
+   - Set up CloudWatch alarms to monitoring and alerts.
+
+**Logging:**
+   - Send logs to Amazon CloudWatch Logs.
