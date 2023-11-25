@@ -6,6 +6,38 @@
 
 This project provides a Django-based API endpoint for managing device location data. The devices emit GPS location data at a rate of 1Hz, and this API allows clients to interact with the data in various ways.
 
+## Getting Started
+
+#### There is a Makefile with commands, or you can run them manually. 
+
+```bash
+# Build
+make build
+
+# Start
+make start
+
+# Migrate
+make migrate
+
+# Create superuser (optional)
+make createsuperuser
+
+# Run tests
+make test
+
+# Run server
+make shell
+# then
+./manage.py runserver 0.0.0.0:8000
+
+# Run device simulator
+make device_sim
+
+# Clean up
+make cleanup
+```
+
 ## Models
 
 The `Device` model represents a device in the field, and it has the following fields:
