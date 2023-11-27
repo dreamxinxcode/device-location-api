@@ -14,6 +14,7 @@ class Device(models.Model):
         return self.aggregated_locations()
 
     def aggregated_locations(self, step: int=10) -> List[Dict[str, Any]]:
+        # Return a list of dictionaries containing aggregated location data.
         points = Location.objects.filter(timestamp__gt=self.powered_on).order_by('-timestamp')
         aggregated_locations = []
 
@@ -38,7 +39,7 @@ class Device(models.Model):
         return loc if loc else None
     
     def add_location(self, lon: float, lat: float, alt: float) -> None:
-        loc = Location.objects.create(device=self, lon=lon, lat=lat, alt=alt)
+        Location.objects.create(device=self, lon=lon, lat=lat, alt=alt)
         self.save()
 
     def power_on(self) -> None:
