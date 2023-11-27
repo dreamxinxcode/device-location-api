@@ -30,4 +30,4 @@ cleanup:
 	docker stop ${DB}
 	docker rm ${API}
 	docker rm ${DB}
-	docker volume rm sw_dev_hw_project-10_pte_postgres_data
+	docker volume rm device-location-api_pte_postgres_data
