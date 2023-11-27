@@ -49,9 +49,17 @@ def send_to_api(point):
     if not r.ok:
         logging.error(f'Unable to send to API, status code: {r.status_code}, error: {r.text}')
 
+def power_on():
+    logging.info('Sending power-on request to backend')
+    r = requests.post('http://127.0.0.1:8000/device/123/power_on/')
+    if not r.ok:
+        logging.error(f'Unable to send power-on request, status code: {r.status_code}, error: {r.text}')
 
 def device_sim(origin):
     last_angle = 0
+
+    # Send power-on request when the script is run
+    power_on()
 
     while True:
         new_wpt, last_angle = new_point(origin, last_angle)

@@ -58,7 +58,7 @@ This ViewSet provides various views for managing device location data.
 
 #### List View
 
-- URL: `/devices/`
+- URL: `/device/`
 - Method: `GET`
 - Response: Returns a list of all devices and their basic information.
 
@@ -70,20 +70,26 @@ This ViewSet provides various views for managing device location data.
 
 #### Update View
 
-- URL: `/devices/{pk}/`
+- URL: `/device/{pk}/`
 - Method: `PUT`
 - Request Payload: JSON data containing the new location (lon, lat, alt).
 - Response: Indicates whether the update was successful.
 
 #### Destroy View
 
-- URL: `/devices/{pk}/`
+- URL: `/device/{pk}/`
 - Method: `DELETE`
 - Response: Deletes the specified device and returns a success message.
 
+#### Power-on View
+
+- URL: `/device/123/power_on/``
+- Method: `POST`
+- Updates the `powered_on` field of the device.
+
 #### Last Location View
 
-- URL: `/devices/{pk}/last_location/`
+- URL: `/device/{pk}/last_location/`
 - Method: `GET`
 - Response: Returns the last recorded location of the specified device.
 
