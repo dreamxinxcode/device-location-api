@@ -42,13 +42,14 @@ make cleanup
 
 The `Device` model represents a device in the field, and it has the following fields:
 
-- `locations`: A JSON field to store the GPS location data.
-- `last_update`: A DateTime field indicating the last time the device location was updated.
+- `powered_on`: A DateTimeField for the last time the device was powered on.
+- `locations`: A property to return aggregated GPS location data.
 
 ### Methods
-
+- `aggregated_locations`: A method that returns aggregated location data.
 - `last_location`: A property that returns the last recorded location of the device.
 - `add_location(lon: float, lat: float, alt: float)`: A method to add a new location to the device, updating the `last_update` field. It also keeps the number of recorded locations within a limit (5 in this case).
+- `power_on`: A method for updating the `powered_on` timestamp.
 
 ## API Views
 
