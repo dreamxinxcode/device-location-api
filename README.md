@@ -12,7 +12,7 @@ This project provides a Django-based API endpoint for managing device location d
 
 ```bash
 # Build
-make build
+make init
 
 # Start
 make start
@@ -31,7 +31,7 @@ make shell
 # then
 ./manage.py runserver 0.0.0.0:8000
 
-# Run device simulator
+# Run device simulator (in new terminal)
 make device_sim
 
 # Clean up
