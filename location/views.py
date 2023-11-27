@@ -53,7 +53,7 @@ class DeviceView(viewsets.ViewSet):
     @action(detail=True, methods=['POST'])
     def power_on(self, request, pk: int=None) -> Response:
         try:
-            device = get_object_or_404(Device, id=pk)
+            device, _ = Device.objects.get_or_create(id=pk)
             device.power_on()
             return Response("Power-on received successfully.", status=status.HTTP_200_OK)
         except Exception:
