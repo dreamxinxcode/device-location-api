@@ -94,6 +94,27 @@ This ViewSet provides various views for managing device location data.
 - Method: `GET`
 - Response: Returns the last recorded location of the specified device.
 
+# cURL Commands for Testing
+```bash
+# Create and power-on
+curl -X POST http://localhost:8000/device/123/power_on/
+
+# Add a location update
+curl -X PUT -H "Content-Type: application/json" -d '{"lon": 12.34, "lat": 56.78, "alt": 100.0}' http://localhost:8000/device/123/
+
+# Request device details
+curl -X GET http://localhost:8000/device/123/
+
+# Request all devices
+curl -X GET http://localhost:8000/device/
+
+# Get last known location of device
+curl -X GET http://localhost:8000/device/123/last_location/
+
+# Delete device
+curl -X DELETE http://localhost:8000/device/123/
+```
+
 # AWS Deployment
 
 **AWS Elastic Beanstalk:**
